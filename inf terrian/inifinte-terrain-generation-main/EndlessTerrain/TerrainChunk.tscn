@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://xxbd64a50fk1"]
+
+[ext_resource type="Material" uid="uid://c6c1qy23nul5i" path="res://materials/grass.tres" id="1_effc1"]
+[ext_resource type="Script" uid="uid://5pepd53k5oke" path="res://inf terrian/inifinte-terrain-generation-main/EndlessTerrain/TerrainChunk.gd" id="1_reb1s"]
+
+[node name="TerrainChunk" type="MeshInstance3D"]
+material_override = ExtResource("1_effc1")
+script = ExtResource("1_reb1s")

@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=3 uid="uid://lgbbafw4yta6"]
+
+[ext_resource type="Script" uid="uid://c0rvs3w4t8rrk" path="res://inf terrian/inifinte-terrain-generation-main/EndlessTerrainThreaded/EndlessTerrainThreaded.gd" id="1_fvffy"]
+[ext_resource type="PackedScene" uid="uid://b2x34ysakaigh" path="res://inf terrian/inifinte-terrain-generation-main/EndlessTerrainThreaded/TerrainChunkMT.tscn" id="2_qog2k"]
+[ext_resource type="Sky" uid="uid://dgwxj6r8ymssf" path="res://inf terrian/inifinte-terrain-generation-main/Sky.tres" id="3_v0uhs"]
+[ext_resource type="Script" uid="uid://bdd8w0vu4r4i6" path="res://inf terrian/inifinte-terrain-generation-main/Debug/debug.gd" id="4_d7jk7"]
+[ext_resource type="PackedScene" uid="uid://4eyad0j15nfi" path="res://inf terrian/inifinte-terrain-generation-main/Player/Player.tscn" id="5_dbm2u"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_w4m3e"]
+noise_type = 3
+
+[sub_resource type="Environment" id="Environment_rmk44"]
+background_mode = 2
+sky = ExtResource("3_v0uhs")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="World" type="Node3D"]
+
+[node name="InfiniteTerrainThreaded" type="Node3D" parent="." node_paths=PackedStringArray("viewer")]
+script = ExtResource("1_fvffy")
+viewer = NodePath("../Player")
+chunk_mesh_scene = ExtResource("2_qog2k")
+thread_count = 15
+noise = SubResource("FastNoiseLite_w4m3e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rmk44")
+
+[node name="debug" type="Label" parent="." node_paths=PackedStringArray("NodeToDebug", "player")]
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 366.0
+offset_bottom = 462.0
+text = "FPS: 0
+Draw Calls:0
+Frame Time:0
+Objects:0"
+script = ExtResource("4_d7jk7")
+NodeToDebug = NodePath("../InfiniteTerrainThreaded")
+player = NodePath("../Player")
+
+[node name="Panel" type="ColorRect" parent="debug"]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 391.0
+offset_bottom = 367.0
+color = Color(0, 0, 0, 0.905882)
+
+[node name="view_debug" type="CheckBox" parent="debug"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -33.0
+offset_right = 106.0
+offset_bottom = -2.0
+button_pressed = true
+text = "Show/Hide Debug"
+
+[node name="show_wireframe" type="CheckBox" parent="debug"]
+layout_mode = 0
+offset_left = 172.0
+offset_top = -32.0
+offset_right = 371.0
+offset_bottom = -1.0
+button_pressed = true
+text = "Show/Hide Wireframe"
+
+[node name="Player_speed" type="HSlider" parent="debug"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = 333.0
+offset_right = 366.0
+offset_bottom = 349.0
+min_value = 5.0
+max_value = 1000.0
+value = 5.0
+
+[node name="Label" type="Label" parent="debug"]
+layout_mode = 0
+offset_left = -15.0
+offset_top = 302.0
+offset_right = 79.0
+offset_bottom = 328.0
+text = "Move Speed
+"
+
+[node name="Player" parent="." instance=ExtResource("5_dbm2u")]
+
+[connection signal="toggled" from="debug/view_debug" to="debug" method="_on_check_box_toggled"]
+[connection signal="toggled" from="debug/show_wireframe" to="debug" method="_on_show_wireframe_toggled"]
+[connection signal="value_changed" from="debug/Player_speed" to="debug" method="_on_player_speed_value_changed"]

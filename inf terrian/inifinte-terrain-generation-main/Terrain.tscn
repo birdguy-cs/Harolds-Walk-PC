@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://brof7t3n8qqrl"]
+
+[ext_resource type="Sky" uid="uid://dgwxj6r8ymssf" path="res://Sky.tres" id="1_7nhts"]
+[ext_resource type="Shader" uid="uid://cjcl4hk450i8k" path="res://texture_shader.gdshader" id="2_6gc53"]
+[ext_resource type="Texture2D" uid="uid://d3bfkhx8ojjvu" path="res://textures/grass.jpg" id="3_0vdkq"]
+[ext_resource type="Texture2D" uid="uid://l5fglvy747x8" path="res://textures/rocks.jpeg" id="4_bdhch"]
+[ext_resource type="Script" uid="uid://eii2v0or3x6i" path="res://TerrainGen.gd" id="5_uw53f"]
+
+[sub_resource type="Environment" id="Environment_n2s3u"]
+background_mode = 2
+sky = ExtResource("1_7nhts")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_53crk"]
+render_priority = 0
+shader = ExtResource("2_6gc53")
+shader_parameter/terrain_grass = ExtResource("3_0vdkq")
+shader_parameter/terrain_rock = ExtResource("4_bdhch")
+shader_parameter/min_grass_height = 0.0
+shader_parameter/max_rock_height = 5.082
+shader_parameter/uvscale = Vector2(5, 5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ngom0"]
+noise_type = 3
+frequency = 0.03
+fractal_octaves = 1
+
+[node name="Terrain Gen" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_n2s3u")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.738349, -0.435767, 0.51473, 0, 0.763221, 0.646137, -0.674418, -0.477075, 0.563524, 20.2626, 3.65017, 20.8621)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_53crk")
+script = ExtResource("5_uw53f")
+resolution = 99
+Terrain_Max_Height = 40
+noise = SubResource("FastNoiseLite_ngom0")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -100)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9507, 0.126633, 0.283079, 0, -0.912827, 0.408346, 0.310112, -0.388215, -0.867825, 0, 0, -46.1437)

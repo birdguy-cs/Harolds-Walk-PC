@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=3 uid="uid://deedmopkw842h"]
+
+[ext_resource type="Script" uid="uid://bpgcs1f5cljy" path="res://EndlessTerrainwithServer/InfiniteTerrainServer.gd" id="1_4q4eh"]
+[ext_resource type="Material" uid="uid://dx3emm3deefrf" path="res://Terrain_Mat.tres" id="2_rul30"]
+[ext_resource type="Sky" uid="uid://dgwxj6r8ymssf" path="res://Sky.tres" id="3_ew1c1"]
+[ext_resource type="PackedScene" uid="uid://4eyad0j15nfi" path="res://Player/Player.tscn" id="4_eig25"]
+[ext_resource type="Script" uid="uid://bdd8w0vu4r4i6" path="res://Debug/debug.gd" id="4_hi3ip"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_itf6b"]
+frequency = 0.001
+
+[sub_resource type="Environment" id="Environment_i2a7v"]
+background_mode = 2
+sky = ExtResource("3_ew1c1")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="InfiniteTerrainServer" type="Node3D" node_paths=PackedStringArray("viewer")]
+script = ExtResource("1_4q4eh")
+chunkSize = 200
+terrain_height = 302
+view_distance = 2000
+viewer = NodePath("Player")
+material = ExtResource("2_rul30")
+noise = SubResource("FastNoiseLite_itf6b")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_i2a7v")
+
+[node name="Player" parent="." instance=ExtResource("4_eig25")]
+floor_snap_length = 0.19
+JUMP_VELOCITY = 7.0
+SPEED = 10
+gravity_enabled = true
+
+[node name="debug" type="Label" parent="." node_paths=PackedStringArray("NodeToDebug", "player")]
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 366.0
+offset_bottom = 462.0
+text = "FPS: 0
+Draw Calls:0
+Frame Time:0
+Objects:0"
+script = ExtResource("4_hi3ip")
+NodeToDebug = NodePath("..")
+player = NodePath("../Player")
+
+[node name="Panel" type="ColorRect" parent="debug"]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 391.0
+offset_bottom = 367.0
+color = Color(0, 0, 0, 0.905882)
+
+[node name="view_debug" type="CheckBox" parent="debug"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -33.0
+offset_right = 106.0
+offset_bottom = -2.0
+button_pressed = true
+text = "Show/Hide Debug"
+
+[node name="show_wireframe" type="CheckBox" parent="debug"]
+layout_mode = 0
+offset_left = 172.0
+offset_top = -32.0
+offset_right = 371.0
+offset_bottom = -1.0
+button_pressed = true
+text = "Show/Hide Wireframe"
+
+[node name="Player_speed" type="HSlider" parent="debug"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = 333.0
+offset_right = 366.0
+offset_bottom = 349.0
+min_value = 5.0
+max_value = 1000.0
+value = 5.0
+
+[node name="Label" type="Label" parent="debug"]
+layout_mode = 0
+offset_left = -15.0
+offset_top = 302.0
+offset_right = 79.0
+offset_bottom = 328.0
+text = "Move Speed
+"
+
+[connection signal="toggled" from="debug/view_debug" to="debug" method="_on_check_box_toggled"]
+[connection signal="toggled" from="debug/show_wireframe" to="debug" method="_on_show_wireframe_toggled"]
+[connection signal="value_changed" from="debug/Player_speed" to="Player" method="_on_player_speed_value_changed"]
