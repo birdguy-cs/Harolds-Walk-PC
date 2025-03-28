@@ -8,3 +8,5 @@ Blender 4.1.1 https://download.blender.org/release/Blender4.1/
 (if you are having trouble importing the included .blend files first check that you are using this exact version of blender.)
 
 Happy hacking!
+
+I used chatgpt to fix the code of the procedurally generated map and based it off of a github project here: https://github.com/Chevifier/Inifinte-Terrain-Generation
