@@ -137,6 +137,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.3178, 33.8358, -68.8685)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.9581, 37.1355, -68.6661)
 levelName = "Islands"
 
+[node name="Portal2" parent="." instance=ExtResource("13_1t5ij")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.9549, -6.06528, -112.545)
+levelName = "InfinitePath"
+
 [node name="plank1" parent="." instance=ExtResource("14_fj7mo")]
 transform = Transform3D(1.34408, 0.154218, 0.177627, -0.00445871, 0.866138, -0.339839, -0.427876, 0.475416, 0.561517, 27.9274, 11.6464, -84.5267)
 
