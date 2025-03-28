@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://ci8x68j8cg14l"]
+[gd_scene load_steps=11 format=3 uid="uid://ci8x68j8cg14l"]
 
 [ext_resource type="PackedScene" uid="uid://bfhrca8wjistb" path="res://Scenes/default_world_environment.tscn" id="1_p3bp3"]
 [ext_resource type="Script" uid="uid://chgc3au80hphd" path="res://inf terrian/inifinte-terrain-generation-main/EndlessTerrain/EndlessTerrain.gd" id="7_nqqfi"]
-[ext_resource type="PackedScene" uid="uid://do8gskxbb5kpk" path="res://Scenes/well_2.tscn" id="8_nqqfi"]
 [ext_resource type="PackedScene" uid="uid://xxbd64a50fk1" path="res://inf terrian/inifinte-terrain-generation-main/EndlessTerrain/TerrainChunk.tscn" id="8_uoip0"]
 [ext_resource type="PackedScene" uid="uid://bqbqjfox4mqqo" path="res://Scenes/PlayerStart.tscn" id="9_hpvdx"]
 [ext_resource type="Script" uid="uid://6exq7vwa6v28" path="res://scripts/HaroldCapture.cs" id="9_uoip0"]
@@ -42,10 +41,6 @@ shape = SubResource("ConcavePolygonShape3D_ynoee")
 
 [node name="music_player" parent="." instance=ExtResource("18_nlr32")]
 song = ExtResource("19_pbh4f")
-
-[node name="well2" parent="." instance=ExtResource("8_nqqfi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.374, -0.337344, -138.121)
-visible = false
 
 [node name="InfiniteTerrain" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.78244, 0)
