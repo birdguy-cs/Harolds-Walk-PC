@@ -40,7 +40,10 @@ public partial class playermovement : CharacterBody3D
 	private float rotateSpeed = 11f;
 	private float debugGrounded = 0f;
 	private float decelleration = 300f;
+	[Export]
 	private float trueMaxSpeed = 28f;
+	[Export]
+	private float runMultiplier = 1.6f;
 	private float moveSpeed;
 	private float verticalaxis;
 	private float horizontalaxis;
@@ -109,7 +112,7 @@ public partial class playermovement : CharacterBody3D
 	{
 		initialMaxMoveSpeed = maxMoveSpeedWithoutRolling;
 
-		RUNSPEED = initialMaxMoveSpeed * 1.6f;
+		RUNSPEED = initialMaxMoveSpeed * runMultiplier;
 		WALKSPEED = initialMaxMoveSpeed / 1.5f;
 
 		disableJumpTimer = new Timer();
