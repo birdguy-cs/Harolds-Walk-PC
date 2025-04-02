@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://capgbhadcjcg3"]
+[gd_scene load_steps=11 format=3 uid="uid://capgbhadcjcg3"]
 
 [ext_resource type="PackedScene" uid="uid://c8yr6wcss1ljh" path="res://options_manager.tscn" id="2_nb0vm"]
 [ext_resource type="PackedScene" uid="uid://bjo2wg11f5s2u" path="res://Scenes/GameManager.tscn" id="2_siibk"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bn17fdf0nqiff" path="res://Scenes/save_ack_screen.tscn" id="5_8ns2c"]
 [ext_resource type="PackedScene" uid="uid://b4n1e8sefi1ca" path="res://Scenes/main_menu.tscn" id="5_rboo5"]
 [ext_resource type="PackedScene" uid="uid://b5tdrfax46c4l" path="res://Scenes/music_manager.tscn" id="6_7733o"]
+[ext_resource type="Script" uid="uid://crkq70dq0dq31" path="res://scripts/ServerManager.cs" id="6_hptm8"]
 
 [node name="root" type="Node3D"]
 
@@ -22,6 +23,9 @@
 volume_db = -2.0
 
 [node name="sound_manager" parent="." instance=ExtResource("3_v0g45")]
+
+[node name="server manager" type="Node" parent="."]
+script = ExtResource("6_hptm8")
 
 [node name="SaveManager" type="Node" parent="." node_paths=PackedStringArray("saveIndicator")]
 script = ExtResource("3_23klr")
