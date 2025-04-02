@@ -137,20 +137,7 @@ doButtonScaling = true
 script = ExtResource("7_1cau8")
 newGameErrorText = NodePath("../RootButtonsContainer/Button/Label")
 
-[node name="Button8" type="Button" parent="Control" index="2"]
-layout_mode = 2
-anchor_left = 0.315972
-anchor_top = -0.0354938
-anchor_right = 0.315972
-anchor_bottom = -0.0354938
-offset_left = 429.0
-offset_top = 634.0
-offset_right = 708.0
-offset_bottom = 660.0
-text = "Networking"
-metadata/_edit_use_anchors_ = true
-
-[node name="RootButtonsContainer" type="VBoxContainer" parent="Control" index="3"]
+[node name="RootButtonsContainer" type="VBoxContainer" parent="Control" index="2"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.372396
@@ -210,7 +197,7 @@ layout_mode = 2
 text = "Exit"
 metadata/_edit_use_anchors_ = true
 
-[node name="LogoPanel" type="Panel" parent="Control" index="4"]
+[node name="LogoPanel" type="Panel" parent="Control" index="3"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.224826
@@ -233,7 +220,6 @@ texture = ExtResource("5_fq1mx")
 expand_mode = 3
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="Control/Button8" to="Control/UIBindings" method="ServerMenu"]
 [connection signal="pressed" from="Control/RootButtonsContainer/Button" to="Control/UIBindings" method="NewGame"]
 [connection signal="pressed" from="Control/RootButtonsContainer/Button2" to="Control/UIBindings" method="FileSelect"]
 [connection signal="pressed" from="Control/RootButtonsContainer/Button3" to="Control/UIBindings" method="Options"]
