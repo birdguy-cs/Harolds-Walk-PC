@@ -8,3 +8,5 @@ Blender 4.1.1 https://download.blender.org/release/Blender4.1/
 (if you are having trouble importing the included .blend files first check that you are using this exact version of blender.)
 
 Happy hacking!
+
+if you want to add anything to my servering code (as of now its not finished) please make a pull request or email me at birdguy.cs@proton.me
