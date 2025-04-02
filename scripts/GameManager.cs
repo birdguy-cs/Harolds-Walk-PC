@@ -14,7 +14,6 @@ public partial class GameManager : Node
 	public MusicManager musicManager;
 	public SoundManager soundManager;
 	public SteamManager steamManager;
-	public ServerManager serverManager;
 	public PlayerUIManager playerUIManager;
 	public OptionsManager optionsManager;
 

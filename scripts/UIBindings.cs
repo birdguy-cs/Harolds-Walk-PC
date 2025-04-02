@@ -9,8 +9,6 @@ public partial class UIBindings : Node
 {
 	[Export]
 	private Label newGameErrorText;
-	[Export]
-	private Label serverJoinErrorText;
 	public void LevelSelect(){
 		GameManager.Instance.levelManager.LoadScene("level_select", false, false, true);
 	}
@@ -52,32 +50,6 @@ public partial class UIBindings : Node
 	private void HelpMenu()
 	{
 		GameManager.Instance.levelManager.LoadScene("help_menu", false, false, true);
-	}
-	
-		private void ServerMenu()
-	{
-		GameManager.Instance.levelManager.LoadScene("server_menu", false, false, true);
-	}
-	
-	private void JoinServer()
-	{
-		serverJoinErrorText.Visible = true;
-		/*var peer = new ENetMultiplayerPeer();
-		peer.CreateClient(IPAddress, Port);
-		Multiplayer.MultiplayerPeer = peer;*/
-	}
-	
-	private void MakeServer()
-	{
-		
-		/*var peer = new ENetMultiplayerPeer();
-		peer.CreateServer(Port, MaxClients);
-		Multiplayer.MultiplayerPeer = peer;*/
-	}
-	
-	private void LeaveServer()
-	{
-		
 	}
 
 	private void Credits()
